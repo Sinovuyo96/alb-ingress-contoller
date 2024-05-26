@@ -36,9 +36,9 @@ jobs:
         run: |
           pwd
           ls
-          cd tarraform
+          cd terraform/
           terraform plan
       - name: Terraform Apply Stage
         run: |
-          cd tarraform
+          cd terraform/
           terraform apply -auto-approve
