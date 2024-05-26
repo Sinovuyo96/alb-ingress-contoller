@@ -34,7 +34,7 @@ jobs:
           terraform init
       - name: Terraform Plan Stage
         run: |
-          cd tarraform/
+          cd alb-ingress-contoller/tarraform/
           terraform plan
       - name: Terraform Apply Stage
         run: |
