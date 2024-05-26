@@ -28,10 +28,11 @@ jobs:
         with:
           terraform_version: 0.14.10
 
-      - name: Terraform Validate Stage
+      - name: Terraform Validate init Stage
         run: |
           cd /alb-ingress-contoller/tarraform/
           terraform validate
+          terraform init
       - name: Terraform Plan Stage
         run: |
           cd /alb-ingress-contoller/tarraform/
