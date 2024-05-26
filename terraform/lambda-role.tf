@@ -20,9 +20,9 @@ data "aws_iam_policy_document" "lambda_iam_policy_doc" {
     "arn:aws:s3:::*/",
     "arn:aws:s3:::*/*",
     ]
+resources = ["*"]
   }
-  resources = ["*"]
-  }
+}
 
 ############
 # ECS ROLE #
