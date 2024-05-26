@@ -31,7 +31,6 @@ jobs:
       - name: Terraform Validate init Stage
         run: |
           cd terraform/
-#          terraform validate
           terraform init
       - name: Terraform Plan Stage
         run: |
