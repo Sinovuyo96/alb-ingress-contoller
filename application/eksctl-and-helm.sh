@@ -1,4 +1,4 @@
-# install eksctl
+# install eksctl pre-req
 # for ARM systems, set ARCH to: `arm64`, `armv6` or `armv7`
 ARCH=amd64
 PLATFORM=$(uname -s)_$ARCH
@@ -34,7 +34,7 @@ aws iam create-policy \
 #option 1:
 #wget "https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.4/docs/examples/alb-ingress-controller.yaml"
 
-#option 2 deploy with helm:
+#option 2 deploy with helm(working solution):
 
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod 700 get_helm.sh

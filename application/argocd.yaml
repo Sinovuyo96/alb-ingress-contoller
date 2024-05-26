@@ -1,3 +1,4 @@
+#setting up a CD tool for eks cluster resources
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
