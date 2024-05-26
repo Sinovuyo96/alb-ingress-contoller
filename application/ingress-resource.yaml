@@ -16,7 +16,7 @@ metadata:
     # still need to fix the the default action to forward to TG
     alb.ingress.kubernetes.io/actions.default: >
       {"Type": "forward", "ForwardConfig": {"TargetGroups": [{"ServiceName": "nginx-service", "ServicePort": "80"}]}}
-    alb.ingress.kubernetes.io/subnets: subnet-0675ad616fd9f1547, subnet-0232a851d9dfc7237,subnet-05994f66db05e9e7d
+    alb.ingress.kubernetes.io/subnets: "subnet-073b05c3e735dba6b", "subnet-05222976c49e763cb", "subnet-048287d7fc8d46dd4"
 spec:
   ingressClassName: alb
   rules:
