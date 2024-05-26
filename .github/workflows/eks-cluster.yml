@@ -30,14 +30,14 @@ jobs:
 
       - name: Terraform Validate init Stage
         run: |
-          cd /alb-ingress-contoller/tarraform/
+          cd terraform/
           terraform validate
           terraform init
       - name: Terraform Plan Stage
         run: |
-          cd /alb-ingress-contoller/tarraform/
+          cd tarraform/
           terraform plan
       - name: Terraform Apply Stage
         run: |
-          cd /alb-ingress-contoller/tarraform/
+          cd tarraform/
           terraform apply -auto-approve
