@@ -34,9 +34,11 @@ jobs:
           terraform init
       - name: Terraform Plan Stage
         run: |
-          cd /tarraform/
-          terraform plan
-      - name: Terraform Apply Stage
-        run: |
-          cd /tarraform/
-          terraform apply -auto-approve
+          pwd
+          ls
+      #     cd /tarraform/
+      #     terraform plan
+      # - name: Terraform Apply Stage
+      #   run: |
+      #     cd /tarraform/
+      #     terraform apply -auto-approve
