@@ -1,3 +1,4 @@
+# srvc for routing request to nginx pod
 apiVersion: v1
 kind: Service
 metadata:
