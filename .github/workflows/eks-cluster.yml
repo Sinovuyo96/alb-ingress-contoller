@@ -28,11 +28,15 @@ jobs:
         with:
           terraform_version: 0.14.10
 
-      - name: Terraform Stages
+      - name: Terraform Validate Stage
         run: |
-          pwd
-          cd tarraform
-          terraform init 
-          terraform validate 
-          terraform plan 
-          terraform apply 
+          cd /alb-ingress-contoller/tarraform/
+          terraform validate
+      - name: Terraform Plan Stage
+        run: |
+          cd /alb-ingress-contoller/tarraform/
+          terraform plan
+      - name: Terraform Apply Stage
+        run: |
+          cd /alb-ingress-contoller/tarraform/
+          terraform apply -auto-approve
