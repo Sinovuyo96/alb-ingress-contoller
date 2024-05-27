@@ -43,10 +43,10 @@ jobs:
       #       . ~/.bash_completion
       #       source <(helm completion bash)
       #       kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/crds.yaml
-      # - name: Access eks Cluster
-      #   run: |
-      #       # install ArgoCD in k8s
-      #       kubectl create namespace argocd
+      - name: Argocd resource creation
+        run: |
+            # install ArgoCD in k8s
+            kubectl create namespace argocd
       #       kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
             
       #       # access ArgoCD UI
