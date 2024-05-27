@@ -17,7 +17,10 @@ jobs:
          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
       - name: Run AWS CLI command
-        run : aws s3 ls --region us-east-1
+        run : |
+          cd application
+          aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document iam_policy.json
+          
       - name: eksclta and helm install
         run: |
          # install eksctl
