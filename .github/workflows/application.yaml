@@ -47,7 +47,7 @@ jobs:
         run: |
           cd  application/
           . ns-verify.sh
-          kubectl apply- f crds.yaml
+          kubectl apply -f crds.yaml
           kubectl apply -f ingress-resource.yaml
           kubectl apply -f svc.yaml
           kubectl apply -f deployment.yaml
