@@ -20,6 +20,7 @@ jobs:
         run : aws s3 ls --region us-east-1
       - name: eksclta and helm install
         run: |
+         cd application/
          . eksctl-and-helm.sh
         
       - name: Update KubeConfig
