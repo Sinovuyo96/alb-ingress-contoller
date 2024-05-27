@@ -46,7 +46,7 @@ jobs:
       - name: Deploy to EKS
         run: |
           cd  application/
-          . ns-script-verify.sh
+          . ns-verify.sh
           kubectl apply -f .
        #  kubectl apply -f service.yaml
         
@@ -68,7 +68,7 @@ jobs:
         run: |
             # install ArgoCD in k8s
             cd application
-            . ns-script-verify.sh
+            . ns-verify.sh
       #       kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
             
       #       # access ArgoCD UI
