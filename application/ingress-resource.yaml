@@ -13,8 +13,6 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     alb.ingress.kubernetes.io/scheme: "internet-facing"
-    alb.ingress.kubernetes.io/actions.default: > 
-    {"Type": "forward", "ForwardConfig": {"TargetGroups": [{"ServiceName": "nginx-service", "ServicePort": "80"}]}}
 spec:
   ingressClassName: alb
   rules:
