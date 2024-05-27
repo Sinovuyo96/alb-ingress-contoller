@@ -4,8 +4,7 @@ on:
   push:
     branches:
     #watches changes on terraform branch merges
-      - dev-application
-
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,16 +14,57 @@ jobs:
         uses: actions/checkout@v2
       - name: Set AWS credentials
         run: |
+         echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+         echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+      - name: Run AWS CLI command
+        run : aws s3 ls --region us-east-1
+        
+      - name: Update KubeConfig
+        run: aws eks update-kubeconfig --name cluster-001 --region us-east-1
+
+      - name: Deploy to EKS
+        run: |
+          cd  application/
+          alias k=kubectl
+          k create ns nginx
+          k apply -f .
+       #  kubectl apply -f service.yaml
+        
+      # - name: Access eks Cluster
+      #   run: |
+      #       # install helm in k8s
+      #       curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+      #       chmod 700 get_helm.sh
+      #       ./get_helm.sh
+      #       helm version --short
+      #       helm repo add stable https://charts.helm.sh/stable
+      #       helm search repo stable
+      #       helm completion bash >> ~/.bash_completion
+      #       . /etc/profile.d/bash_completion.sh
+      #       . ~/.bash_completion
+      #       source <(helm completion bash)
+      #       k apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/crds.yaml
+      - name: Argocd resource creation
+        run: |
             # install ArgoCD in k8s
-            kubectl create namespace argocd
-            kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+            k create namespace argocd
+      #       k apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
             
-            # access ArgoCD UI
-            kubectl get svc -n argocd
-            kubectl port-forward svc/argocd-server 8080:443 -n argocd
+      #       # access ArgoCD UI
+      #       k get svc -n argocd
+      #       #k port-forward svc/argocd-server 8080:443 -n argocd
             
-            # login with admin user and below token (as in documentation):
-            kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
+      #       # login with admin user and below token (as in documentation):
+      #       k -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
             
-            # you can change and delete init password
+      #       # you can change and delete init password
+      # - name: Expose argocd-server
+      #   run: |
+      #      k patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+      #      export ARGOCD_SERVER=`kubectl get svc argocd-server -n argocd -o json | jq --raw-output '.status.loadBalancer.ingress[0].hostname'`
+      # - name: Login to argocd-server
+      #   run: |
+      #      export ARGO_PWD=`kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
+      #      argocd login $ARGOCD_SERVER --username admin --password $ARGO_PWD --insecure
+           
 
