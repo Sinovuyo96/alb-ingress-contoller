@@ -13,7 +13,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Update kube config
+      - name: Set AWS credentials
+        run: |
+         echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+         echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+      - name: Run AWS CLI command
+        run : aws s3 ls --region us-east-1
+        
+      - name: Update KubeConfig
         run: aws eks update-kubeconfig --name cluster-001 --region us-east-1
 
       - name: Deploy to EKS
