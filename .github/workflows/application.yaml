@@ -55,21 +55,6 @@ jobs:
           kubectl apply -f svc.yaml
           kubectl apply -f deployment.yaml
           
-        
-      # - name: Access eks Cluster
-      #   run: |
-      #       # install helm in k8s
-      #       curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-      #       chmod 700 get_helm.sh
-      #       ./get_helm.sh
-      #       helm version --short
-      #       helm repo add stable https://charts.helm.sh/stable
-      #       helm search repo stable
-      #       helm completion bash >> ~/.bash_completion
-      #       . /etc/profile.d/bash_completion.sh
-      #       . ~/.bash_completion
-      #       source <(helm completion bash)
-      #       kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/crds.yaml
       - name: Argocd resource creation
         run: |
             # install ArgoCD in k8s
@@ -77,8 +62,8 @@ jobs:
             . ns-verify.sh
             kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
             kubectl apply -f argocd.yaml
-      # login with admin user and below token (as in documentation):
             kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
+         
       #       # access ArgoCD UI
       #       kubectl get svc -n argocd
       #       #kubectl port-forward svc/argocd-server 8080:443 -n argocd           
