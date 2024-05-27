@@ -12,11 +12,12 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/actions.default: > {"Type": "forward", "ForwardConfig": {"TargetGroups": [{"ServiceName": "nginx-service", "ServicePort": "80"}]}}
     alb.ingress.kubernetes.io/subnets: "subnet-000777ab5c32b809b", "subnet-0594d5597d5e48ac2"
 spec:
   ingressClassName: alb
   rules:
-  - host: sinovuyo.730335617397.realhandsonlabs.net
+  - host: sinovuyo.975050059616.realhandsonlabs.net
     http:
       paths:
       - path: /
