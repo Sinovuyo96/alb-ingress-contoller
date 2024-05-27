@@ -5,6 +5,7 @@ metadata:
   namespace: nginx
   annotations:
     alb.ingress.kubernetes.io/backend-protocol: 'HTTP'
+    alb.ingress.kubernetes.io/subnets: ["subnet-000777ab5c32b809b, subnet-0594d5597d5e48ac2"]
     alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
     alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '10'
     alb.ingress.kubernetes.io/success-codes: "200-499"
@@ -14,7 +15,6 @@ metadata:
     alb.ingress.kubernetes.io/scheme: "internet-facing"
     alb.ingress.kubernetes.io/actions.default: > 
     {"Type": "forward", "ForwardConfig": {"TargetGroups": [{"ServiceName": "nginx-service", "ServicePort": "80"}]}}
-    alb.ingress.kubernetes.io/subnets: ["subnet-000777ab5c32b809b, subnet-0594d5597d5e48ac2"]
 spec:
   ingressClassName: alb
   rules:
