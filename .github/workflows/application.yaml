@@ -18,8 +18,8 @@ jobs:
          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
       - name: Run AWS CLI command
         run : |
-          cd application
-          aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document iam_policy.json
+        #   cd application
+        # aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document iam_policy.json
           
       - name: eksclta and helm install
         run: |
