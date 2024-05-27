@@ -47,8 +47,11 @@ jobs:
         run: |
           cd  application/
           . ns-verify.sh
-          kubectl apply -f .
-       #  kubectl apply -f service.yaml
+          kubectl apply- f crds.yaml
+          kubectl apply -f ingress-resource.yaml
+          kubectl apply -f svc.yaml
+          kubectl apply -f deployment.yaml
+          kubectl apply -f argocd.yaml
         
       # - name: Access eks Cluster
       #   run: |
