@@ -44,7 +44,12 @@ jobs:
 
         
       - name: Update KubeConfig
-        run: aws eks update-kubeconfig --name cluster-001 --region us-east-1
+        run: |
+         aws eks update-kubeconfig --name cluster-001 --region us-east-1
+         cd application/
+         curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.7.2/docs/install/iam_policy.json
+
+         aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy-delete --policy-document file://iam_policy.json
 
       - name: Deploy to EKS
         run: |
