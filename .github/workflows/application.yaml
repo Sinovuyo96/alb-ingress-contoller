@@ -55,6 +55,7 @@ jobs:
           kubectl apply -f svc.yaml
           kubectl apply -f deployment.yaml
           kubectl apply -f service-account.yaml
+          kubectl apply -f ingressClass.yaml
           
       - name: Argocd resource creation
         run: |
