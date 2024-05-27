@@ -18,6 +18,9 @@ jobs:
          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
       - name: Run AWS CLI command
         run : aws s3 ls --region us-east-1
+      - name: eksclta and helm install
+        run: |
+         . eksctl-and-helm.sh
         
       - name: Update KubeConfig
         run: aws eks update-kubeconfig --name cluster-001 --region us-east-1
