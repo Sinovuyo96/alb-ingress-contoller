@@ -51,7 +51,7 @@ jobs:
           kubectl apply -f ingress-resource.yaml
           kubectl apply -f svc.yaml
           kubectl apply -f deployment.yaml
-          kubectl apply -f argocd.yaml
+          
         
       # - name: Access eks Cluster
       #   run: |
@@ -72,7 +72,8 @@ jobs:
             # install ArgoCD in k8s
             cd application
             . ns-verify.sh
-      #       kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+            kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+            kubectl apply -f argocd.yaml
             
       #       # access ArgoCD UI
       #       kubectl get svc -n argocd
