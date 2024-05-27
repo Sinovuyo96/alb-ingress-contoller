@@ -46,7 +46,7 @@ jobs:
       - name: Deploy to EKS
         run: |
           cd  application/
-          kubectl create ns nginx
+          . ns-script-verify.sh
           kubectl apply -f .
        #  kubectl apply -f service.yaml
         
@@ -67,7 +67,8 @@ jobs:
       - name: Argocd resource creation
         run: |
             # install ArgoCD in k8s
-            kubectl create namespace argocd
+            cd application
+            . ns-script-verify.sh
       #       kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
             
       #       # access ArgoCD UI
