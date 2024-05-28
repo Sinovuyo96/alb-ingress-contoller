@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: gocd/gocd-server:v24.1.0
+        image: public.ecr.aws/bitnami/argo-cd:latest
         ports:
         - containerPort: 80
