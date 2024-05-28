@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: public.ecr.aws/bitnami/argo-cd:latest
+        image: httpd:latest
         ports:
         - containerPort: 80
