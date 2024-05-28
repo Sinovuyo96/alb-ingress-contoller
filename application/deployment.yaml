@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: quay.io/argoproj/argocd:v2.11.2
+        image: gocd/gocd-server:v24.1.0
         ports:
         - containerPort: 80
