@@ -34,3 +34,10 @@ spec:
             name: ui-service
             port:
              number: 8080
+      - path: /home
+        pathType: Prefix
+        backend:
+          service:
+           name: catalog-service
+           port:
+            number: 80
