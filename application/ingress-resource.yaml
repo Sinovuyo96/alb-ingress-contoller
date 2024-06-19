@@ -38,6 +38,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-           name: catalog-service
+           name: catalog
            port:
             number: 80
