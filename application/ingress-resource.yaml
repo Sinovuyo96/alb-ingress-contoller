@@ -20,7 +20,7 @@ spec:
   - host: sinovuyo.851725616318.realhandsonlabs.net
     http:
       paths:
-      - path: /
+      - path: /dev
         pathType: Prefix
         backend:
           service:
