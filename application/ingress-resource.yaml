@@ -13,11 +13,11 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     alb.ingress.kubernetes.io/scheme: "internet-facing"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    alb.ingress.kubernetes.io/subnets: subnet-09ae78da6e6f8f061, subnet-07ff33341602e2b83
+    alb.ingress.kubernetes.io/subnets: subnet-0207771b00456aae9, subnet-0abe9e9f96dee44b2
 spec:
   ingressClassName: alb
   rules:
-  - host: sinovuyo.975050059616.realhandsonlabs.net
+  - host: sinovuyo.851725616318.realhandsonlabs.net
     http:
       paths:
       - path: /
