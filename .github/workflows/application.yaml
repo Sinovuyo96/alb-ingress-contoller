@@ -50,12 +50,13 @@ jobs:
           cd  application/
           . ns-verify.sh
           kubectl apply -f crds.yaml
-          kubectl apply -f ingress-resource.yaml
           kubectl apply -f svc.yaml
           kubectl apply -f deployment.yaml
           kubectl apply -f service-account.yaml
           kubectl apply -f ingressClass.yaml
           kubectl apply -f app-ui.yaml
+          kubectl apply -f ui-svc.yaml
+          kubectl apply -f ingress-resource.yaml
           
       # - name: Argocd resource creation
       #   run: |
