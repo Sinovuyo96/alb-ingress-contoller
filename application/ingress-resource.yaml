@@ -27,10 +27,10 @@ spec:
            name: nginx-service
            port:
             number: 80
-      - path: /argocd
+      - path: /ui
         pathType: Prefix
         backend:
           service:
-            name: argocd-server
+            name: ui-service
             port:
              number: 80
