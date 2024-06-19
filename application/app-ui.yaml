@@ -18,4 +18,4 @@ spec:
       - name: app-ui
         image: public.ecr.aws/aws-containers/retail-store-sample-ui:0.8.0
         ports:
-        - containerPort: 80
+        - containerPort: 8080
