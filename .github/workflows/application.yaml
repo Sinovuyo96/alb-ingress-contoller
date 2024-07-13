@@ -58,6 +58,7 @@ jobs:
           kubectl apply -f ui-svc.yaml
           kubectl apply -f catalog-deploy.yaml
           kubectl apply -f ingress-resource.yaml
+          kubectl apply -f mysql.yaml
           
       # - name: Argocd resource creation
       #   run: |
