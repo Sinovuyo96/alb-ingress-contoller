@@ -93,7 +93,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - port: 3306
       targetPort: http
       protocol: TCP
       name: http
