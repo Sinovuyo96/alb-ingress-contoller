@@ -81,7 +81,7 @@ type: Opaque
 apiVersion: v1
 kind: Service
 metadata:
-  name: catalog
+  name: catalog-db
   namespace: eks-sample-app
   labels:
     app.kubernetes.io/created-by: eks-workshop
