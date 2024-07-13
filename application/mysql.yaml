@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:5.7
+        name: mysql
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: catalog-db
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: catalog-db
+              key: password
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+  namespace: eks-sample-app
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  namespace: eks-sample-app
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: manual
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: catalog-db
+  namespace: eks-sample-app
+type: Opaque
+data:
+  username: <base64-encoded-username>
+  password: <base64-encoded-password>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog
+  namespace: eks-sample-app
+  labels:
+    app.kubernetes.io/created-by: eks-workshop
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: catalog
+    app.kubernetes.io/instance: catalog
+    app.kubernetes.io/component: service
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: catalog
+  namespace: eks-sample-app
