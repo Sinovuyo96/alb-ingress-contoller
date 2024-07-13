@@ -36,7 +36,7 @@ spec:
                 secretKeyRef:
                   name: catalog-db
                   key: username
-            - name: DB_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: catalog-db
