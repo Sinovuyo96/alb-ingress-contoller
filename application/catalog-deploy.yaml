@@ -101,4 +101,13 @@ spec:
     app.kubernetes.io/name: catalog
     app.kubernetes.io/instance: catalog
     app.kubernetes.io/component: service
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalog
+  namespace: eks-sample-app
+data:
+  database: mydatabase  # Database name
+
 
