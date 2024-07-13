@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/created-by: eks-workshop
     app.kubernetes.io/type: app
-  namespace: nginx
+  namespace: eks-sample-app
 spec:
   replicas: 1
   selector:
@@ -89,7 +89,7 @@ metadata:
   name: catalog
   labels:
     app.kubernetes.io/created-by: eks-workshop
-  namespace: nginx
+  namespace: eks-sample-app
 spec:
   type: ClusterIP
   ports:
