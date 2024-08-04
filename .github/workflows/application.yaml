@@ -49,6 +49,7 @@ jobs:
         run: |
           cd  application/
           . ns-verify.sh
+          kubectl create ns eks-sample-app
           kubectl apply -f crds.yaml
           kubectl apply -f svc.yaml
           kubectl apply -f deployment.yaml
@@ -59,7 +60,6 @@ jobs:
           kubectl apply -f catalog-deploy.yaml
           kubectl apply -f ingress-resource.yaml
           kubectl apply -f mysql.yaml
-          kubectl delete ingress dev-ingress -n eks-sample-app
           
       # - name: Argocd resource creation
       #   run: |
