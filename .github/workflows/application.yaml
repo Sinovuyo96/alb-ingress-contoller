@@ -39,7 +39,7 @@ jobs:
       
       - name: Update KubeConfig
         run: |
-         aws eks update-kubeconfig --name prod-cluster --region us-east-1
+         aws eks update-kubeconfig --name prod-cluster-002 --region us-east-1
          cd application/
 #         curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.7.2/docs/install/iam_policy.json
 
