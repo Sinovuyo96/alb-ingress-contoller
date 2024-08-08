@@ -49,6 +49,7 @@ jobs:
         run: |
           cd  application/
           . ns-verify.sh
+          kubectl create ns eks-sample-app
           kubectl apply -f crds.yaml
           kubectl apply -f svc.yaml
           kubectl apply -f deployment.yaml
