@@ -3,16 +3,13 @@ kind: Deployment
 metadata:
   name: catalog
   labels:
-    app.kubernetes.io/created-by: eks-workshop
-    app.kubernetes.io/type: app
+    name: catalog
   namespace: eks-sample-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: catalog
-      app.kubernetes.io/instance: catalog
-      app.kubernetes.io/component: service
+      name: catalog
   template:
     metadata:
       annotations:
@@ -20,10 +17,7 @@ spec:
         prometheus.io/port: "8080"
         prometheus.io/scrape: "true"
       labels:
-        app.kubernetes.io/name: catalog
-        app.kubernetes.io/instance: catalog
-        app.kubernetes.io/component: service
-        app.kubernetes.io/created-by: eks-workshop
+        name: catalog
     spec:
       serviceAccountName: catalog
       securityContext:
@@ -31,6 +25,10 @@ spec:
       containers:
         - name: catalog
           env:
+        - name: MYSQL_HOST
+          value: catalog-db
+        - name: MYSQL_DB
+          value: catalog
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
@@ -88,7 +86,7 @@ kind: Service
 metadata:
   name: catalog
   labels:
-    app.kubernetes.io/created-by: eks-workshop
+    name: catalog
   namespace: eks-sample-app
 spec:
   type: ClusterIP
@@ -98,9 +96,7 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: catalog
-    app.kubernetes.io/instance: catalog
-    app.kubernetes.io/component: service
+    name: catalog
 ---
 apiVersion: v1
 kind: ConfigMap
