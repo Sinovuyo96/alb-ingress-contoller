@@ -13,7 +13,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     alb.ingress.kubernetes.io/scheme: "internet-facing"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    alb.ingress.kubernetes.io/subnets: subnet-0ef0cd3d8180852ca, subnet-0400fee8b26b4fb6b
+    alb.ingress.kubernetes.io/subnets: subnet-098d417e20e07c699, subnet-0252b1ab57ac9739e
 spec:
   ingressClassName: alb
   rules:
