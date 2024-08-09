@@ -93,6 +93,7 @@ spec:
       protocol: TCP
       name: http
   selector:
+    app: mysql
     app.kubernetes.io/name: catalog
     app.kubernetes.io/instance: catalog
     app.kubernetes.io/component: service
