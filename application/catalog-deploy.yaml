@@ -25,20 +25,20 @@ spec:
       containers:
         - name: catalog
           env:
-        - name: MYSQL_HOST
-          value: catalog-db
-        - name: MYSQL_DB
-          value: catalog
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: catalog-db
-                  key: username
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: catalog-db
-                  key: password
+          - name: MYSQL_HOST
+            value: catalog-db
+          - name: MYSQL_DB
+            value: catalog
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: catalog-db
+                key: username
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: catalog-db
+                key: password
           envFrom:
             - configMapRef:
                 name: catalog
