@@ -69,10 +69,10 @@ spec:
   storageClassName: manual
 ---
 apiVersion: v1
-kind: Secret
 data:
-  username: <base64-encoded-username>
-  password: <base64-encoded-password>
+  password: bXlwYXNzd29yZA==
+  username: bXl1c2Vy
+kind: Secret
 metadata:
   name: catalog-db
   namespace: eks-sample-app
