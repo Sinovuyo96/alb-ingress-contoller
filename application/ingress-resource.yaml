@@ -17,7 +17,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: sinovuyo.590184081927.realhandsonlabs.net
+  - host: sinovuyo.339713079894.realhandsonlabs.net
     http:
       paths:
       - path: /dev
