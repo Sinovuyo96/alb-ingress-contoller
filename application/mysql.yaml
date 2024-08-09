@@ -69,16 +69,6 @@ spec:
   storageClassName: manual
 ---
 apiVersion: v1
-data:
-  password: bXlwYXNzd29yZA==
-  username: bXl1c2Vy
-kind: Secret
-metadata:
-  name: catalog-db
-  namespace: eks-sample-app
-type: Opaque
----
-apiVersion: v1
 kind: Service
 metadata:
   name: catalog-db
