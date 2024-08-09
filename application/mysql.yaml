@@ -84,7 +84,7 @@ metadata:
   name: catalog-db
   namespace: eks-sample-app
   labels:
-    app.kubernetes.io/created-by: eks-workshop
+    name: mysql
 spec:
   type: ClusterIP
   ports:
@@ -94,11 +94,6 @@ spec:
       name: http
   selector:
     app: mysql
-    app.kubernetes.io/name: catalog
-    app.kubernetes.io/instance: catalog
-    app.kubernetes.io/component: service
-    app.kubernetes.io/created-by: eks-workshop
-
 ---
 apiVersion: v1
 kind: ServiceAccount
