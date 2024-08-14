@@ -1,45 +1,23 @@
-name: Terraform CI/CD
-
+name: json-yaml-validate 
 on:
   push:
     branches:
-    #watches changes on terraform branch merges
-      - terraform
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write # enable write permissions for pull request comments
 
 jobs:
-  build:
+  json-yaml-validate:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set AWS credentials
-        run: |
-         echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-         echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-      - name: Run AWS CLI command
-        run: |
-          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-          aws configure set region us-east-1  # Replace with your desired AWS region
-          # aws s3api create-bucket --bucket ecs-application-state-bucket --region us-east-1
-          aws s3 ls  # Example AWS CLI command
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 0.14.10
+      - uses: actions/checkout@v4
 
-      - name: Terraform Validate init Stage
-        run: |
-          cd terraform/
-          terraform init
-      - name: Terraform Plan Stage
-        run: |
-          pwd
-          ls
-          cd terraform/
-          terraform plan
-      - name: Terraform Apply Stage
-        run: |
-          cd terraform/
-          terraform apply -auto-approve
+      - name: json-yaml-validate
+        id: json-yaml-validate
+        uses: GrantBirki/json-yaml-validate@vX.X.X # replace with the latest version
+        with:
+          comment: "true" # enable comment mode
