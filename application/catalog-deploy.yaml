@@ -24,58 +24,58 @@ spec:
         fsGroup: 1000
       containers:
       - name: catalog
+        image: "public.ecr.aws/aws-containers/retail-store-sample-catalog:0.4.0"
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
         env:
         - name: MYSQL_HOST
           value: catalog-db
         - name: MYSQL_DB
-           value: catalog
+          value: catalog
         - name: DB_USER
-           valueFrom:
-             secretKeyRef:
-               name: catalog-db
-               key: username
+          valueFrom:
+            secretKeyRef:
+              name: catalog-db
+              key: username
         - name: MYSQL_ROOT_PASSWORD
-           valueFrom:
-             secretKeyRef:
-               name: catalog-db
-                key: password
-          envFrom:
-            - configMapRef:
-                name: catalog
-          securityContext:
-            capabilities:
-              drop:
-                - ALL
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 1000
-          image: "public.ecr.aws/aws-containers/retail-store-sample-catalog:0.4.0"
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 8080
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 3
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            successThreshold: 3
-            periodSeconds: 5
-          resources:
-            limits:
-              memory: 512Mi
-            requests:
-              cpu: 250m
-              memory: 512Mi
-          volumeMounts:
-            - mountPath: /tmp
-              name: tmp-volume
+          valueFrom:
+            secretKeyRef:
+              name: catalog-db
+              key: password
+        envFrom:
+          - configMapRef:
+              name: catalog
+        securityContext:
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          successThreshold: 3
+          periodSeconds: 5
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            memory: 512Mi
+        volumeMounts:
+          - mountPath: /tmp
+            name: tmp-volume
       volumes:
         - name: tmp-volume
           emptyDir:
@@ -92,8 +92,8 @@ spec:
   type: ClusterIP
   ports:
     - port: 8080
-    protocol: TCP
-    targetPort: 8080
+      protocol: TCP
+      targetPort: 8080
   selector:
     name: catalog
 ---
@@ -104,5 +104,3 @@ metadata:
   namespace: eks-sample-app
 data:
   database: mydatabase  # Database name
-
-
