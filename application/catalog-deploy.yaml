@@ -80,27 +80,3 @@ spec:
         - name: tmp-volume
           emptyDir:
             medium: Memory
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: catalog
-  labels:
-    name: catalog
-  namespace: eks-sample-app
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8080
-      protocol: TCP
-      targetPort: 8080
-  selector:
-    name: catalog
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: catalog
-  namespace: eks-sample-app
-data:
-  database: mydatabase  # Database name
