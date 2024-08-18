@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalog
+  namespace: eks-sample-app
+data:
+  database: mydatabase  # Database name
